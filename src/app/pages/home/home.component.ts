@@ -49,6 +49,11 @@ export class HomeComponent implements OnInit {
   send(): any{
     console.log(this.formLogin.value);
     this.mensaje = true;
+    // Tiempo de 5 segundos para borrar información
+    setTimeout(()=>{
+      this.mensaje = false;
+      console.log("Datos ocultados");
+    }, 5000)
   }
 
 }

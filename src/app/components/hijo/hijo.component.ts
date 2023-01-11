@@ -7,15 +7,26 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class HijoComponent implements OnInit {
 
-  @Input() nomHijo!:any;
-  @Input() dniHijo!:any;
-  @Input() civilHijo!:any;
+  @Input() nomHijo!:string;
+  @Input() dniHijo!:string;
+  @Input() civilHijo!:string;
 
-  registrado = [{"nombre":"this.nomHijo", "dni":"this.dniHijo", "estado_civil":"this.civilHijo"}]
+  registrado = [{}];
+
+  agregar(){
+    this.registrado = [{"nombre":this.nomHijo, "dni":this.dniHijo, "estado_civil":this.civilHijo}];
+    // Tiempo de 5 segundos para borrar información
+    setTimeout(()=>{
+      this.registrado = [{}];
+      console.log("Datos borrados");
+    }, 5000)
+  }
+  
 
   constructor() { }
 
   ngOnInit(): void {
+    this.agregar();
   }
 
 }

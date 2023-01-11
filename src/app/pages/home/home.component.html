@@ -1,0 +1,30 @@
+<form [formGroup]="formLogin" (submit)="send()" class="container">
+    <h1 class="text-primary-emphasis mt-5 mb-3">Registro de Personas</h1>
+    <div *ngIf="mensaje">
+        <app-hijo [nomHijo]="nomHome" [dniHijo]="dniHome" [civilHijo]="civilHome" ></app-hijo>
+    </div>
+    <div class="mt-3">
+        <label for="nombre" class="fw-bolder">Nombre: </label>
+        <span appValidacion *ngIf="this.formLogin.get('nombre')?.invalid">
+            <span *ngIf="this.formLogin.get('nombre')?.dirty" class="text-danger"> (Debe tener mínimo 5 caracteres)</span>
+        </span><br>
+        <input type="text" id="nombre" formControlName="nombre" class="form-control mt-2" [(ngModel)]="nomHome">
+    </div>
+    <div class="mt-3">
+        <label for="dni" class="fw-bolder">DNI: </label>
+        <span appValidacion *ngIf="this.formLogin.get('dni')?.invalid">
+            <span *ngIf="this.formLogin.get('dni')?.dirty" class="text-danger"> (Debe tener mínimo 8 caracteres numéricos)</span>
+        </span><br>
+        <input type="text" id="dni" formControlName="dni" class="form-control mt-2" [(ngModel)]="dniHome">
+    </div>
+    <div class="mt-3">
+        <label for="civil" class="fw-bolder">Estado Civil: </label>
+        <select name="" id="civil" formControlName="civil" class="form-control mt-2" [(ngModel)]="civilHome">
+            <option value="" disabled>Seleccione una opción</option>
+            <option *ngFor="let item of estadoCivil" [value]="item">{{item}}</option>
+        </select>
+    </div>
+    <div>
+        <button [disabled]="formLogin.invalid" class="btn btn-success my-4">Enviar</button>
+    </div>
+</form>
